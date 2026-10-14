@@ -12,3 +12,6 @@ LIST_FILE="$DEST_DIR/filelist.txt"
 
 # Buat direktori tujuan
 mkdir -p "$DEST_DIR"
+
+# Cari semua file .txt (termasuk subdirektori)
+(cd "$SRC_DIR" && find . -type f -name "*.txt") > "$LIST_FILE"
