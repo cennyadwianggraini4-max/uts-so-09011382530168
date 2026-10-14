@@ -15,3 +15,9 @@ mkdir -p "$DEST_DIR"
 
 # Cari semua file .txt (termasuk subdirektori)
 (cd "$SRC_DIR" && find . -type f -name "*.txt") > "$LIST_FILE"
+
+# Buat arsip
+TIMESTAMP=$(date +%Y%m%d_%H%M%S)
+ARCHIVE_NAME="backup_${NIM}_${TIMESTAMP}.tar.gz"
+ARCHIVE_PATH="$DEST_DIR/$ARCHIVE_NAME"
+tar -czvf "$ARCHIVE_PATH" -C "$SRC_DIR" -T "$LIST_FILE"
