@@ -21,3 +21,11 @@ TIMESTAMP=$(date +%Y%m%d_%H%M%S)
 ARCHIVE_NAME="backup_${NIM}_${TIMESTAMP}.tar.gz"
 ARCHIVE_PATH="$DEST_DIR/$ARCHIVE_NAME"
 tar -czvf "$ARCHIVE_PATH" -C "$SRC_DIR" -T "$LIST_FILE"
+
+#Verifikasi isi arsip
+tar -tzvf "$ARCHIVE_PATH"
+
+# Catat ke log
+COUNT=$(wc -l < "$LIST_FILE")
+SIZE=$(du -h "$ARCHIVE_PATH" | cut -f1)
+echo "$(date '+%Y-%m-%d %H:%M:%S') | $ARCHIVE_NAME | $COUNT | $SIZE" >> "$LOG_FILE"
