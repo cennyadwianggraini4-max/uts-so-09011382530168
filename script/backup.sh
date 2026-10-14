@@ -29,3 +29,5 @@ tar -tzvf "$ARCHIVE_PATH"
 COUNT=$(wc -l < "$LIST_FILE")
 SIZE=$(du -h "$ARCHIVE_PATH" | cut -f1)
 echo "$(date '+%Y-%m-%d %H:%M:%S') | $ARCHIVE_NAME | $COUNT | $SIZE" >> "$LOG_FILE"
+# Rotasi, simpan 5 arsip terbaru
+ls -t "$DEST_DIR"/backup_${NIM}_*.tar.gz | tail -n +6 | xargs -r rm --
